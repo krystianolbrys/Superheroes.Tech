@@ -8,12 +8,15 @@ namespace Superheroes.Tech.Infrastructure.DataSource.Implementations
 {
     public class CharastersJsonStaticFileDataProvider : ICharactersDataProvider
     {
+        private readonly IJsonCharacterReadDtosToDomainModelsProjector _projector;
         private readonly CharactersJsonStaticFileConfiguration _configuration;
         private readonly JsonSerializerOptions _jsonSerializerOptions;
 
-        public CharastersJsonStaticFileDataProvider(CharactersJsonStaticFileConfiguration configuration)
+        public CharastersJsonStaticFileDataProvider(CharactersJsonStaticFileConfiguration configuration, IJsonCharacterReadDtosToDomainModelsProjector projector)
         {
             ArgumentNullException.ThrowIfNull(nameof(configuration));
+            ArgumentNullException.ThrowIfNull(nameof(projector));
+            _projector = projector;
             _configuration = configuration;
             _jsonSerializerOptions = new JsonSerializerOptions
             {
@@ -23,13 +26,10 @@ namespace Superheroes.Tech.Infrastructure.DataSource.Implementations
 
         public async Task<IEnumerable<CharacterEntity>> GetAll()
         {
-            var dtos = await this.ReadFileRaw();
+            var dtos = await this.ReadDtosFromRawFile();
 
-            // only test purpose
-            Console.WriteLine(JsonSerializer.Serialize(dtos, new JsonSerializerOptions { WriteIndented = true}));
-
-            // project from DTO to Core Entity objects
-            return [];
+            var coreEntities = _projector.Project(dtos);
+            return coreEntities;
         }
 
         public async Task<CharacterEntity> GetByName(string Name)
@@ -37,7 +37,7 @@ namespace Superheroes.Tech.Infrastructure.DataSource.Implementations
             throw new NotImplementedException();
         }
 
-        private async Task<IEnumerable<CharacterReadDto>> ReadFileRaw()
+        private async Task<IEnumerable<CharacterReadDto>> ReadDtosFromRawFile()
         {
             using FileStream stream = File.OpenRead(_configuration.FilePath);
             using StreamReader reader = new StreamReader(stream);
