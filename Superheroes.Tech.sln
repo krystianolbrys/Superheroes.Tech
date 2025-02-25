@@ -5,6 +5,10 @@ VisualStudioVersion = 17.12.35707.178 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Superheroes.Tech.API.Http", "Superheroes.Tech.API.Http\Superheroes.Tech.API.Http.csproj", "{CF4AF247-4B0B-431A-87EB-31417111BFD5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Superheroes.Tech.Application", "Superheroes.Tech.Application\Superheroes.Tech.Application.csproj", "{4049338A-02DD-44A7-86D6-51911D661F5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Superheroes.Tech.Infrastructure.Extensions", "Superheroes.Tech.Infrastructure.Extensions\Superheroes.Tech.Infrastructure.Extensions.csproj", "{4B107DB5-FBEA-4DD6-B4F4-22B19CBA714C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{CF4AF247-4B0B-431A-87EB-31417111BFD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF4AF247-4B0B-431A-87EB-31417111BFD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF4AF247-4B0B-431A-87EB-31417111BFD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4049338A-02DD-44A7-86D6-51911D661F5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4049338A-02DD-44A7-86D6-51911D661F5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4049338A-02DD-44A7-86D6-51911D661F5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4049338A-02DD-44A7-86D6-51911D661F5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B107DB5-FBEA-4DD6-B4F4-22B19CBA714C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B107DB5-FBEA-4DD6-B4F4-22B19CBA714C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B107DB5-FBEA-4DD6-B4F4-22B19CBA714C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B107DB5-FBEA-4DD6-B4F4-22B19CBA714C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

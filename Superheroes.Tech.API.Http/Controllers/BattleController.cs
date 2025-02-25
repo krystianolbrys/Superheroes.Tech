@@ -1,4 +1,6 @@
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Superheroes.Tech.Application;
 
 namespace Superheroes.Tech.API.Http.Controllers
 {
@@ -7,16 +9,19 @@ namespace Superheroes.Tech.API.Http.Controllers
     public class BattleController : ControllerBase
     {
         private readonly ILogger<BattleController> _logger;
+        private readonly IMediator _mediator;
 
-        public BattleController(ILogger<BattleController> logger)
+        public BattleController(ILogger<BattleController> logger, IMediator mediator)
         {
             _logger = logger;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        public int[] Get()
+        public async Task<int[]> Get(CancellationToken cts)
         {
-            return Enumerable.Range(1, 5).ToArray();
+            var data = await _mediator.Send(new SampleCommand(13), cts);
+            return [.. Enumerable.Range(1, 5).ToArray(), data];
         }
     }
 }

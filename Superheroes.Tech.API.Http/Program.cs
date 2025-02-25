@@ -1,3 +1,5 @@
+using Superheroes.Tech.Infrastructure.Extensions;
+
 namespace Superheroes.Tech.API.Http
 {
     public class Program
@@ -7,7 +9,7 @@ namespace Superheroes.Tech.API.Http
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
+            builder.RegisterMediatRWithImplementations();
             builder.Services.AddControllers();
 
             var app = builder.Build();
