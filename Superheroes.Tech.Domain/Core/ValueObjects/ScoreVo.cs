@@ -4,6 +4,11 @@
     {
         public ScoreVo(double value)
         {
+            if (value <= 0)
+            {
+                throw new ArgumentOutOfRangeException("value");
+            }
+
             Value = value;
         }
 
