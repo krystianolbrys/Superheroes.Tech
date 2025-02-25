@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{48A6DFC0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Superheroes.Tech.Domain.UnitTests", "Superheroes.Tech.Domain.UnitTests\Superheroes.Tech.Domain.UnitTests.csproj", "{90831CFC-4607-4F62-A7D2-10591E68449E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Superheroes.Tech.Infrastructure.DataSource", "Superheroes.Tech.Infrastructure.DataSource\Superheroes.Tech.Infrastructure.DataSource.csproj", "{DB2EE2A3-D7B0-495E-ADA9-DC45780117EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{90831CFC-4607-4F62-A7D2-10591E68449E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90831CFC-4607-4F62-A7D2-10591E68449E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90831CFC-4607-4F62-A7D2-10591E68449E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB2EE2A3-D7B0-495E-ADA9-DC45780117EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB2EE2A3-D7B0-495E-ADA9-DC45780117EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB2EE2A3-D7B0-495E-ADA9-DC45780117EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB2EE2A3-D7B0-495E-ADA9-DC45780117EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

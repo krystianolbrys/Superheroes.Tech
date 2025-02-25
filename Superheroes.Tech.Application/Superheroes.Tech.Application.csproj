@@ -10,4 +10,9 @@
     <PackageReference Include="MediatR" Version="12.4.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Superheroes.Tech.Domain\Superheroes.Tech.Domain.csproj" />
+    <ProjectReference Include="..\Superheroes.Tech.Infrastructure.DataSource\Superheroes.Tech.Infrastructure.DataSource.csproj" />
+  </ItemGroup>
+
 </Project>
