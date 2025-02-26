@@ -19,12 +19,6 @@ namespace Superheroes.Tech.Application.CQRS.QueryHandlers
         public async Task<IEnumerable<CharacterEntity>> Handle(GetAllCharactersQuery request, CancellationToken cancellationToken)
         {
             var data = await _dataProvider.GetAll();
-            var thor = data.First(d => d.EqualsByName("thor"));
-            var thanos = data.First(d => d.EqualsByName("thanos"));
-
-            var processor = new BattleProcessor();
-            var result1 = processor.Fight(thor, thanos);
-
             return data;
         }
     }

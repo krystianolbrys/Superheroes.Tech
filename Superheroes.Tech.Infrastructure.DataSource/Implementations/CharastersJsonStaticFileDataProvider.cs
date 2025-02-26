@@ -27,14 +27,26 @@ namespace Superheroes.Tech.Infrastructure.DataSource.Implementations
         public async Task<IEnumerable<CharacterEntity>> GetAll()
         {
             var dtos = await this.ReadDtosFromRawFile();
-
-            var coreEntities = _projector.Project(dtos);
-            return coreEntities;
+            var characters = _projector.Project(dtos);
+            return characters;
         }
 
         public async Task<CharacterEntity> GetByName(string Name)
         {
-            throw new NotImplementedException();
+            var characters = await this.GetAll();
+            var candidate = characters.FirstOrDefault(character => character.EqualsByName(Name));
+
+            return candidate == null 
+                ? throw new Exception("byznes exception here not found by name Character") 
+                : candidate;
+        }
+
+        public async Task<IEnumerable<CharacterEntity>> GetByNames(IEnumerable<string> names)
+        {
+            var tasks = names.Select(this.GetByName);
+            var characters = await Task.WhenAll(tasks);
+
+            return characters;
         }
 
         private async Task<IEnumerable<CharacterReadDto>> ReadDtosFromRawFile()

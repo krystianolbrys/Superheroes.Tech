@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Superheroes.Tech.Application.CQRS.Queries;
+using Superheroes.Tech.API.Http.Models.Response;
+using Superheroes.Tech.Application.CQRS.Commands;
 
 namespace Superheroes.Tech.API.Http.Controllers
 {
@@ -18,15 +19,21 @@ namespace Superheroes.Tech.API.Http.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<object>> Get(CancellationToken cts)
+        public async Task<ActionResult<BattleFightResponse>> Get(CancellationToken cts)
         {
-            var data = await _mediator.Send(new GetAllCharactersQuery(), cts);
+            var character = "thor";
+            var rival = "thanos";
 
-            return data.Select(character =>
+            var command = new ExecuteBattleCommand([character, rival]);
+            var result = await _mediator.Send(command, cts);
+
+            if (result.Success)
             {
-                var weaknessName = character.HasWeaknessCharacter ? character.Weakness.Name : null;
-                return new { character.Name, weaknessName };
-            });
+                return new BattleFightResponse { Winner = result.CharacterEntity!.Name };
+            }
+
+            // todo check that and catch other exceptions
+            return BadRequest(result.FailReason);
         }
     }
 }
