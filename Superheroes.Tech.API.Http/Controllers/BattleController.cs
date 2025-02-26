@@ -1,6 +1,5 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Superheroes.Tech.Application;
 using Superheroes.Tech.Application.CQRS.Queries;
 
 namespace Superheroes.Tech.API.Http.Controllers
@@ -19,10 +18,15 @@ namespace Superheroes.Tech.API.Http.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<string>> Get(CancellationToken cts)
+        public async Task<IEnumerable<object>> Get(CancellationToken cts)
         {
             var data = await _mediator.Send(new GetAllCharactersQuery(), cts);
-            return data.Select(character => character.Name);
+
+            return data.Select(character =>
+            {
+                var weaknessName = character.HasWeaknessCharacter ? character.Weakness.Name : null;
+                return new { character.Name, weaknessName };
+            });
         }
     }
 }

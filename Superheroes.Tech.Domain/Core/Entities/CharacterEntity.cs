@@ -1,4 +1,4 @@
-﻿using Superheroes.Tech.Domain.Core.Enums;
+﻿using System.Net.NetworkInformation;
 using Superheroes.Tech.Domain.Core.Exceptions;
 using Superheroes.Tech.Domain.Core.ValueObjects;
 
@@ -29,5 +29,8 @@ namespace Superheroes.Tech.Domain.Core.Entities
         }
 
         public bool HasWeaknessCharacter => _weakness != null;
+
+        public bool EqualsByName(string cmpName) => 
+            StringComparer.InvariantCultureIgnoreCase.Equals(this.Name, cmpName);
     }
 }

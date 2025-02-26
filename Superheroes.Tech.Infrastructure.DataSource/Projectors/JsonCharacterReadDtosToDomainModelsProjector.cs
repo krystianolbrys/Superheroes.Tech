@@ -11,13 +11,28 @@ namespace Superheroes.Tech.Infrastructure.DataSource.Projectors
         public IEnumerable<CharacterEntity> Project(IEnumerable<CharacterReadDto> dtos)
         {
             var charactersWithoutWeakness = dtos.Where(d => d.Weakness == null);
-            var others = dtos.Except(charactersWithoutWeakness).ToList();
-            return [];
+            var charactersWithWeakness = dtos.Except(charactersWithoutWeakness).ToList();
+
+            var part1 = charactersWithoutWeakness.Select(this.Map);
+            var part2 = charactersWithWeakness.Select(dto => this.FindMatchAndMap(dto, part1));
+
+            return [.. part1, .. part2];
         }
 
-        //private CharacterEntity Map(CharacterReadDto dto)
-        //{
-        //    return null;
-        //}
+        private CharacterEntity Map(CharacterReadDto dto)
+        {
+            var score = new ScoreVo(dto.Score!.Value);
+            var type = CharacterType.FromKey(dto.Type!);
+            return new CharacterEntity(dto.Name!, type, score);
+        }
+
+        private CharacterEntity FindMatchAndMap(CharacterReadDto dto, IEnumerable<CharacterEntity> existing)
+        {
+            var foundWekness = existing.FirstOrDefault(character => character.EqualsByName(dto.Weakness!));
+
+            var score = new ScoreVo(dto.Score!.Value);
+            var type = CharacterType.FromKey(dto.Type!);
+            return new CharacterEntity(dto.Name!, type, score, foundWekness);
+        }
     }
 }
