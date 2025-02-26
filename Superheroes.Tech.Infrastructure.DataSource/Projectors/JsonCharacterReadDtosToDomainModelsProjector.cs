@@ -12,8 +12,8 @@ namespace Superheroes.Tech.Infrastructure.DataSource.Projectors
             var charactersWithoutWeakness = dtos.Where(d => d.Weakness == null);
             var charactersWithWeakness = dtos.Except(charactersWithoutWeakness).ToList();
 
-            var part1 = charactersWithoutWeakness.Select(this.Map);
-            var part2 = charactersWithWeakness.Select(dto => this.FindMatchAndMap(dto, part1));
+            var part1 = charactersWithoutWeakness.Select(this.Map).ToList();
+            var part2 = charactersWithWeakness.Select(dto => this.FindMatchAndMap(dto, part1)).ToList();
 
             return [.. part1, .. part2];
         }

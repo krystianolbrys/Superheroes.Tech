@@ -43,10 +43,15 @@ namespace Superheroes.Tech.Infrastructure.DataSource.Implementations
 
         public async Task<IEnumerable<CharacterEntity>> GetByNames(IEnumerable<string> names)
         {
-            var tasks = names.Select(this.GetByName);
-            var characters = await Task.WhenAll(tasks);
+            var characters = await this.GetAll();
 
-            return characters;
+            return names.Select(name => characters.FirstOrDefault(character => character.EqualsByName(name)))
+                .Where(character => character != null)!;
+
+            //var tasks = names.Select(this.GetByName);
+            //var characters = await Task.WhenAll(tasks);
+
+            //return characters;
         }
 
         private async Task<IEnumerable<CharacterReadDto>> ReadDtosFromRawFile()

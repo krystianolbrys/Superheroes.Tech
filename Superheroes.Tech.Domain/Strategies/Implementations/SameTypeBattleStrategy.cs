@@ -5,12 +5,12 @@ namespace Superheroes.Tech.Domain.Strategies.Implementations
 {
     public class SameTypeBattleStrategy : IBattleStrategy
     {
-        public int DesignedForHowManyFighters => 2;
+        public int DesignedForNumberOfFighters => 2;
 
         public bool IsApplicable(IEnumerable<CharacterEntity> characters)
         {
             return 
-                characters.Count() == this.DesignedForHowManyFighters
+                characters.Count() == this.DesignedForNumberOfFighters
                 && characters.First().Type == characters.Last().Type;
         }
 

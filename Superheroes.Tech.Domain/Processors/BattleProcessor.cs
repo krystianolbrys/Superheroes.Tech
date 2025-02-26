@@ -24,7 +24,7 @@ namespace Superheroes.Tech.Domain.Processors
         private IBattleStrategy SelectApplicableStrategyOrThrow(IEnumerable<CharacterEntity> characters)
         {
             var apllicableStrategies =
-                _strategies.Where(strategy => strategy.IsApplicable(characters));
+                _strategies.Where(strategy => strategy.IsApplicable(characters)).ToList();
 
             if (!apllicableStrategies.Any())
             {
@@ -36,7 +36,7 @@ namespace Superheroes.Tech.Domain.Processors
                 throw new Exception("only one strategy possible");
             }
 
-            return _strategies.Single();
+            return apllicableStrategies.Single();
         }
     }
 }

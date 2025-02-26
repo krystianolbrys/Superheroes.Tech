@@ -18,8 +18,8 @@ namespace Superheroes.Tech.API.Http
             builder.Services.AddScoped<ICharactersDataProvider, CharastersJsonStaticFileDataProvider>();
 
             builder.Services.AddSingleton<IBattleStrategy, SameTypeBattleStrategy>();
-            //builder.Services.AddSingleton<IBattleStrategy, StandardCrossTypeBattleStrategy>();
-            //builder.Services.AddSingleton<IBattleStrategy, SingleWeaknessBattleStrategy>();
+            builder.Services.AddSingleton<IBattleStrategy, StandardBattleWithNoWekanessStrategy>();
+            builder.Services.AddSingleton<IBattleStrategy, StandardBattleWithOneSideWeaknessStrategy>();
 
             // Add services to the container.
             builder.RegisterMediatRWithImplementations();
