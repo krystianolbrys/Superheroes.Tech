@@ -26,7 +26,7 @@ namespace Superheroes.Tech.Domain.Processors
             var apllicableStrategies =
                 _strategies.Where(strategy => strategy.IsApplicable(characters));
 
-            if (apllicableStrategies.Any())
+            if (!apllicableStrategies.Any())
             {
                 throw new Exception("no stratgies");
             }

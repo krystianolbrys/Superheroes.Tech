@@ -5,6 +5,8 @@ namespace Superheroes.Tech.Domain.Strategies.Implementations
 {
     public class StandardCrossTypeBattleStrategy : IBattleStrategy
     {
+        public int DesignedForHowManyFighters => throw new NotImplementedException();
+
         public BattleResultVo Execute(IEnumerable<CharacterEntity> characters)
         {
             throw new NotImplementedException();

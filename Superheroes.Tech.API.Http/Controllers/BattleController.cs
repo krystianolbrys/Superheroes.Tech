@@ -22,7 +22,7 @@ namespace Superheroes.Tech.API.Http.Controllers
         public async Task<ActionResult<BattleFightResponse>> Get(CancellationToken cts)
         {
             var character = "thor";
-            var rival = "thanos";
+            var rival = "aquaman";
 
             var command = new ExecuteBattleCommand([character, rival]);
             var result = await _mediator.Send(command, cts);

@@ -5,6 +5,8 @@ namespace Superheroes.Tech.Domain.Strategies
 {
     public interface IBattleStrategy
     {
+        public int DesignedForHowManyFighters { get; }
+
         public bool IsApplicable(IEnumerable<CharacterEntity> characters);
 
         public BattleResultVo Execute(IEnumerable<CharacterEntity> characters);
