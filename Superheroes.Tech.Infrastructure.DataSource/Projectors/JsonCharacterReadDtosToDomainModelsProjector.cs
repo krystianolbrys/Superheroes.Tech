@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using Superheroes.Tech.Domain.Core.Entities;
+﻿using Superheroes.Tech.Domain.Core.Entities;
 using Superheroes.Tech.Domain.Core.ValueObjects;
 using Superheroes.Tech.Infrastructure.DataSource.Interfaces;
 using Superheroes.Tech.Infrastructure.DataSource.Models.CharactersJson;
