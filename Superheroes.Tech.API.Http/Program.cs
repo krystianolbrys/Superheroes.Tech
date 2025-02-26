@@ -1,3 +1,5 @@
+using Superheroes.Tech.Domain.Strategies;
+using Superheroes.Tech.Domain.Strategies.Implementations;
 using Superheroes.Tech.Infrastructure.DataSource.Configurations;
 using Superheroes.Tech.Infrastructure.DataSource.Implementations;
 using Superheroes.Tech.Infrastructure.DataSource.Interfaces;
@@ -14,6 +16,10 @@ namespace Superheroes.Tech.API.Http
             builder.Services.AddSingleton<IJsonCharacterReadDtosToDomainModelsProjector, JsonCharacterReadDtosToDomainModelsProjector>();
             builder.Services.AddSingleton(new CharactersJsonStaticFileConfiguration("../data.source.json"));
             builder.Services.AddScoped<ICharactersDataProvider, CharastersJsonStaticFileDataProvider>();
+
+            builder.Services.AddSingleton<IBattleStrategy, SameTypeBattleStrategy>();
+            builder.Services.AddSingleton<IBattleStrategy, StandardCrossTypeBattleStrategy>();
+            builder.Services.AddSingleton<IBattleStrategy, SingleWeaknessBattleStrategy>();
 
             // Add services to the container.
             builder.RegisterMediatRWithImplementations();

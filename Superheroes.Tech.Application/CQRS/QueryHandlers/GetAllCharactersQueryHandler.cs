@@ -1,8 +1,6 @@
-﻿using System.Text.Json;
-using MediatR;
+﻿using MediatR;
 using Superheroes.Tech.Application.CQRS.Queries;
 using Superheroes.Tech.Domain.Core.Entities;
-using Superheroes.Tech.Domain.Core.Processors;
 using Superheroes.Tech.Infrastructure.DataSource.Interfaces;
 
 namespace Superheroes.Tech.Application.CQRS.QueryHandlers
