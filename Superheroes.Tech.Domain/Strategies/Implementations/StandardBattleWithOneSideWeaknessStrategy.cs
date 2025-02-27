@@ -12,15 +12,17 @@ namespace Superheroes.Tech.Domain.Strategies.Implementations
             return
                characters.Count() == this.DesignedForNumberOfFighters
                && characters.First().Type != characters.Last().Type
-               && this.IsWeaknessApplicable(characters);
+               && this.IsWeaknessOneWayApplicable(characters);
         }
 
         public BattleResultVo Execute(IEnumerable<CharacterEntity> characters)
         {
-            return BattleResultVo.CreteUnrosolved(this.GetType().Name, this.GetType().Name);
+            var winner = characters.First(character => !character.HasWeaknessCharacter);
+
+            return BattleResultVo.CreteResolved(this.GetType().Name, winner);
         }
 
-        private bool IsWeaknessApplicable(IEnumerable<CharacterEntity> characters)
+        private bool IsWeaknessOneWayApplicable(IEnumerable<CharacterEntity> characters)
         {
             var characterWithWeeknesDefined =
                 characters.Single(character => character.HasWeaknessCharacter);

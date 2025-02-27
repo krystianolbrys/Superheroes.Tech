@@ -19,7 +19,7 @@ namespace Superheroes.Tech.API.Http.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<BattleFightResponse>> Get(CancellationToken cts)
+        public async Task<ActionResult<ResolvedBattleFightResponse>> Get(CancellationToken cts)
         {
             var character = "batman";
             var rival = "superman";
@@ -29,11 +29,11 @@ namespace Superheroes.Tech.API.Http.Controllers
 
             if (result.Success)
             {
-                return new BattleFightResponse { Winner = result.CharacterEntity!.Name };
+                return new ResolvedBattleFightResponse(result.CharacterEntity!.Name, result.StrategyKey);
             }
 
             // todo check that and catch other exceptions
-            return BadRequest(result.FailReason);
+            return BadRequest(new UnresolvedBattleFightResponse(result.FailReason!, result.StrategyKey));
         }
     }
 }
