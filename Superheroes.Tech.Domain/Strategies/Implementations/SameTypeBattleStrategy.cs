@@ -16,7 +16,7 @@ namespace Superheroes.Tech.Domain.Strategies.Implementations
 
         public BattleResultVo Execute(IEnumerable<CharacterEntity> characters)
         {
-            return new BattleResultVo(false, null, "characters of the same type should not fight");
+            return BattleResultVo.CreteUnrosolved(this.GetType().Name, "characters of the same type should not fight");
         }
     }
 }

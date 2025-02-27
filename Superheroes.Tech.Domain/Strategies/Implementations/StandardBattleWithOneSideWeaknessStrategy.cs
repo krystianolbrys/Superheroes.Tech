@@ -17,7 +17,7 @@ namespace Superheroes.Tech.Domain.Strategies.Implementations
 
         public BattleResultVo Execute(IEnumerable<CharacterEntity> characters)
         {
-            return new BattleResultVo(false, null, "StandardBattleWithOneSideWeaknessStrategy");
+            return BattleResultVo.CreteUnrosolved(this.GetType().Name, this.GetType().Name);
         }
 
         private bool IsWeaknessApplicable(IEnumerable<CharacterEntity> characters)
