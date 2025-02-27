@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Superheroes.Tech.API.Http.Models.Request;
 using Superheroes.Tech.API.Http.Models.Response;
 using Superheroes.Tech.Application.CQRS.Commands;
 
@@ -19,12 +20,9 @@ namespace Superheroes.Tech.API.Http.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ResolvedBattleFightResponse>> Get(CancellationToken cts)
+        public async Task<ActionResult<ResolvedBattleFightResponse>> Get([FromQuery] BattleRequest dto, CancellationToken cts)
         {
-            var character = "batman";
-            var rival = "joker";
-
-            var command = new ExecuteBattleCommand([character, rival]);
+            var command = new ExecuteBattleCommand([dto.Character, dto.Rival]);
             var result = await _mediator.Send(command, cts);
 
             if (result.Success)

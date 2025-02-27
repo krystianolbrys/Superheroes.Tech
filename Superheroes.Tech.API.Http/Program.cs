@@ -1,3 +1,4 @@
+using Superheroes.Tech.API.Http.Models;
 using Superheroes.Tech.Domain.Strategies;
 using Superheroes.Tech.Domain.Strategies.Implementations;
 using Superheroes.Tech.Domain.Validators;
@@ -25,11 +26,20 @@ namespace Superheroes.Tech.API.Http
 
             // Add services to the container.
             builder.RegisterMediatRWithImplementations();
+
             builder.Services.AddControllers();
+
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Battle API 0.0.1");
+                options.RoutePrefix = "docs";
+            });
 
             app.UseAuthorization();
 
