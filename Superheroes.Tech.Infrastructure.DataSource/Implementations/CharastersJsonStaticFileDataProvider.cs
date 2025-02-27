@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using Superheroes.Tech.Domain.Core.Entities;
+using Superheroes.Tech.Domain.Core.Exceptions;
 using Superheroes.Tech.Infrastructure.DataSource.Configurations;
 using Superheroes.Tech.Infrastructure.DataSource.Interfaces;
 using Superheroes.Tech.Infrastructure.DataSource.Models.CharactersJson;
@@ -31,29 +32,29 @@ namespace Superheroes.Tech.Infrastructure.DataSource.Implementations
             return characters;
         }
 
-        public async Task<CharacterEntity> GetByName(string Name)
+        public async Task<CharacterEntity> GetByNameOrThrow(string name)
         {
             var characters = await this.GetAll();
-            var candidate = characters.FirstOrDefault(character => character.EqualsByName(Name));
+            var candidate = characters.FirstOrDefault(character => character.EqualsByName(name));
 
             return candidate == null
-                ? throw new Exception("byznes exception here not found by name Character")
+                ? throw new CharacterNotFoundExeception(name)
                 : candidate;
         }
 
-        public async Task<IEnumerable<CharacterEntity>> GetByNames(IEnumerable<string> names)
+        public async Task<IEnumerable<CharacterEntity>> GetByNamesOrThrow(IEnumerable<string> names)
         {
             var characters = await this.GetAll();
 
             var foundCharacters = names.Select(name => characters.FirstOrDefault(character => character.EqualsByName(name)))
-                .Where(character => character != null)!.ToList();
+                .Where(character => character != null);
 
-            if (foundCharacters.Count != names.Count())
+            if (foundCharacters.Count() != names.Count())
             {
-                throw new Exception("not all charactes found");
+                throw new CharacterNotFoundExeception("Not all charactes found - add intercest which specific");
             }
 
-            return foundCharacters;
+            return foundCharacters!;
         }
 
         private async Task<IEnumerable<CharacterReadDto>> ReadDtosFromRawFile()

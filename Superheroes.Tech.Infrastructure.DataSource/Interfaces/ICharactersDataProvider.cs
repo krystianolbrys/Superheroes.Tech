@@ -6,8 +6,8 @@ namespace Superheroes.Tech.Infrastructure.DataSource.Interfaces
     {
         public Task<IEnumerable<CharacterEntity>> GetAll();
 
-        public Task<CharacterEntity> GetByName(string Name);
+        public Task<CharacterEntity> GetByNameOrThrow(string Name);
 
-        public Task<IEnumerable<CharacterEntity>> GetByNames(IEnumerable<string> names);
+        public Task<IEnumerable<CharacterEntity>> GetByNamesOrThrow(IEnumerable<string> names);
     }
 }

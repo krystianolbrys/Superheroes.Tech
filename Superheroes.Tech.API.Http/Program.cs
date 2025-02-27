@@ -1,3 +1,4 @@
+using Superheroes.Tech.API.Http.Filters;
 using Superheroes.Tech.API.Http.Models;
 using Superheroes.Tech.Domain.Strategies;
 using Superheroes.Tech.Domain.Strategies.Implementations;
@@ -27,7 +28,7 @@ namespace Superheroes.Tech.API.Http
             // Add services to the container.
             builder.RegisterMediatRWithImplementations();
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers(options => options.Filters.Add<GlobalExceptionFilter>());
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

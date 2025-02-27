@@ -20,7 +20,7 @@ namespace Superheroes.Tech.Application.CQRS.CommandHandlers
 
         public async Task<BattleResultVo> Handle(ExecuteBattleCommand request, CancellationToken cancellationToken)
         {
-            var characters = await _dataProvider.GetByNames(request.CharacterNames);
+            var characters = await _dataProvider.GetByNamesOrThrow(request.CharacterNames);
 
             var processor = new BattleProcessor(_strategies);
             var result = processor.Fight(characters);

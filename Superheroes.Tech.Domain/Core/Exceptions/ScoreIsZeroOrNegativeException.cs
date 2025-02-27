@@ -1,6 +1,6 @@
 ﻿namespace Superheroes.Tech.Domain.Core.Exceptions
 {
-    public class ScoreIsZeroOrNegativeException : Exception
+    public class ScoreIsZeroOrNegativeException : BusinessException
     {
         public ScoreIsZeroOrNegativeException() : base() { }
     }

@@ -2,7 +2,7 @@
 
 namespace Superheroes.Tech.Domain.Core.Exceptions
 {
-    public class NoWeaknessSetException : Exception
+    public class NoWeaknessSetException : BusinessException
     {
         public NoWeaknessSetException(CharacterEntity character)
             : base($"Weakness not found for character: {character.Name}")
