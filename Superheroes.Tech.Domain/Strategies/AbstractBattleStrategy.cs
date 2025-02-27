@@ -20,5 +20,7 @@ namespace Superheroes.Tech.Domain.Strategies
 
             return this.BattleStepsImplementation(characters);
         }
+
+        public string GetName => this.GetType().Name;
     }
 }

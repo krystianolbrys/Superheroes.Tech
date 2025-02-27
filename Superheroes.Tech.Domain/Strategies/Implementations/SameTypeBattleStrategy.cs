@@ -16,7 +16,7 @@ namespace Superheroes.Tech.Domain.Strategies.Implementations
 
         protected override BattleResultVo BattleStepsImplementation(IEnumerable<CharacterEntity> characters)
         {
-            return BattleResultVo.CreteUnrosolved(this.GetType().Name, "characters of the same type should not fight");
+            return BattleResultVo.CreteUnrosolved(this.GetName, "characters of the same type should not fight");
         }
     }
 }

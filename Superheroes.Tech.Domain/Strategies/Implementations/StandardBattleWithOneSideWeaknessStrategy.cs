@@ -27,7 +27,7 @@ namespace Superheroes.Tech.Domain.Strategies.Implementations
         {
             var winner = characters.First(character => !character.HasWeaknessCharacter);
 
-            return BattleResultVo.CreteResolved(this.GetType().Name, winner);
+            return BattleResultVo.CreteResolved(this.GetName, winner);
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Superheroes.Tech.Domain.Strategies.Implementations
         {
             var winner = characters.OrderByDescending(character => character.Score.Value).First();
 
-            return BattleResultVo.CreteResolved(this.GetType().Name, winner);
+            return BattleResultVo.CreteResolved(this.GetName, winner);
         }
     }
 }
