@@ -21,9 +21,9 @@ namespace Superheroes.Tech.API.Http
             builder.Services.AddScoped<ICharactersDataProvider, CharastersJsonStaticFileDataProvider>();
 
             builder.Services.AddSingleton<IWeaknessValidator, WeaknessValidator>();
-            builder.Services.AddSingleton<IBattleStrategy, SameTypeBattleStrategy>();
-            builder.Services.AddSingleton<IBattleStrategy, StandardBattleWithNoWekanessStrategy>();
-            builder.Services.AddSingleton<IBattleStrategy, StandardBattleWithOneSideWeaknessStrategy>();
+            builder.Services.AddSingleton<AbstractBattleStrategy, SameTypeBattleStrategy>();
+            builder.Services.AddSingleton<AbstractBattleStrategy, StandardBattleWithNoWekanessStrategy>();
+            builder.Services.AddSingleton<AbstractBattleStrategy, StandardBattleWithOneSideWeaknessStrategy>();
 
             // Add services to the container.
             builder.RegisterMediatRWithImplementations();

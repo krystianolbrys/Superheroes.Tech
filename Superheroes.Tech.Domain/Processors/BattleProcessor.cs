@@ -6,9 +6,9 @@ namespace Superheroes.Tech.Domain.Processors
 {
     public class BattleProcessor
     {
-        private readonly IEnumerable<IBattleStrategy> _strategies;
+        private readonly IEnumerable<AbstractBattleStrategy> _strategies;
 
-        public BattleProcessor(IEnumerable<IBattleStrategy> strategies)
+        public BattleProcessor(IEnumerable<AbstractBattleStrategy> strategies)
         {
             _strategies = strategies;
         }
@@ -21,7 +21,7 @@ namespace Superheroes.Tech.Domain.Processors
             return result;
         }
 
-        private IBattleStrategy SelectApplicableStrategyOrThrow(IEnumerable<CharacterEntity> characters)
+        private AbstractBattleStrategy SelectApplicableStrategyOrThrow(IEnumerable<CharacterEntity> characters)
         {
             var apllicableStrategies =
                 _strategies.Where(strategy => strategy.IsApplicable(characters)).ToList();

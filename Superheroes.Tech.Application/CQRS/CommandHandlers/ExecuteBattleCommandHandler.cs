@@ -10,9 +10,9 @@ namespace Superheroes.Tech.Application.CQRS.CommandHandlers
     public class ExecuteBattleCommandHandler : IRequestHandler<ExecuteBattleCommand, BattleResultVo>
     {
         private readonly ICharactersDataProvider _dataProvider;
-        private readonly IEnumerable<IBattleStrategy> _strategies;
+        private readonly IEnumerable<AbstractBattleStrategy> _strategies;
 
-        public ExecuteBattleCommandHandler(ICharactersDataProvider dataProvider, IEnumerable<IBattleStrategy> strategies)
+        public ExecuteBattleCommandHandler(ICharactersDataProvider dataProvider, IEnumerable<AbstractBattleStrategy> strategies)
         {
             _dataProvider = dataProvider;
             _strategies = strategies;

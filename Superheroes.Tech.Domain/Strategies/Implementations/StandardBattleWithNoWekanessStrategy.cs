@@ -4,7 +4,7 @@ using Superheroes.Tech.Domain.Validators;
 
 namespace Superheroes.Tech.Domain.Strategies.Implementations
 {
-    public class StandardBattleWithNoWekanessStrategy : IBattleStrategy
+    public class StandardBattleWithNoWekanessStrategy : AbstractBattleStrategy
     {
         private readonly IWeaknessValidator _weaknessValidator;
 
@@ -13,9 +13,9 @@ namespace Superheroes.Tech.Domain.Strategies.Implementations
             _weaknessValidator = weaknessValidator;
         }
 
-        public int DesignedForNumberOfFighters => 2;
+        public override int DesignedForNumberOfFighters => 2;
 
-        public bool IsApplicable(IEnumerable<CharacterEntity> characters)
+        public override bool IsApplicable(IEnumerable<CharacterEntity> characters)
         {
             return
                characters.Count() == this.DesignedForNumberOfFighters
@@ -23,7 +23,7 @@ namespace Superheroes.Tech.Domain.Strategies.Implementations
                && !_weaknessValidator.IsWeaknessOneWayApplicable(characters);
         }
 
-        public BattleResultVo Execute(IEnumerable<CharacterEntity> characters)
+        protected override BattleResultVo BattleStepsImplementation (IEnumerable<CharacterEntity> characters)
         {
             var winner = characters.OrderByDescending(character => character.Score.Value).First();
 

@@ -3,18 +3,18 @@ using Superheroes.Tech.Domain.Core.ValueObjects;
 
 namespace Superheroes.Tech.Domain.Strategies.Implementations
 {
-    public class SameTypeBattleStrategy : IBattleStrategy
+    public class SameTypeBattleStrategy : AbstractBattleStrategy
     {
-        public int DesignedForNumberOfFighters => 2;
+        public override int DesignedForNumberOfFighters => 2;
 
-        public bool IsApplicable(IEnumerable<CharacterEntity> characters)
+        public override bool IsApplicable(IEnumerable<CharacterEntity> characters)
         {
             return 
                 characters.Count() == this.DesignedForNumberOfFighters
                 && characters.First().Type == characters.Last().Type;
         }
 
-        public BattleResultVo Execute(IEnumerable<CharacterEntity> characters)
+        protected override BattleResultVo BattleStepsImplementation(IEnumerable<CharacterEntity> characters)
         {
             return BattleResultVo.CreteUnrosolved(this.GetType().Name, "characters of the same type should not fight");
         }
