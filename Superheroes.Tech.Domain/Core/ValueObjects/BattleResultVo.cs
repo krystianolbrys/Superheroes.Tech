@@ -17,10 +17,10 @@ namespace Superheroes.Tech.Domain.Core.ValueObjects
         public string? FailReason { get; private set; }
         public string StrategyKey { get; private set; }
 
-        public static BattleResultVo CreteUnrosolved(string strategyKey, string reason) 
-            => new BattleResultVo(strategyKey,false, null,reason);
+        public static BattleResultVo CreteUnrosolved(string strategyKey, string reason)
+            => new BattleResultVo(strategyKey, false, null, reason);
 
         public static BattleResultVo CreteResolved(string strategyKey, CharacterEntity? winner)
-            => new BattleResultVo(strategyKey, false, winner, null);
+            => new BattleResultVo(strategyKey, true, winner, null);
     }
 }

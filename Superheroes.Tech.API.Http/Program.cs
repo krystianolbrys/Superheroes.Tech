@@ -1,5 +1,6 @@
 using Superheroes.Tech.Domain.Strategies;
 using Superheroes.Tech.Domain.Strategies.Implementations;
+using Superheroes.Tech.Domain.Validators;
 using Superheroes.Tech.Infrastructure.DataSource.Configurations;
 using Superheroes.Tech.Infrastructure.DataSource.Implementations;
 using Superheroes.Tech.Infrastructure.DataSource.Interfaces;
@@ -17,6 +18,7 @@ namespace Superheroes.Tech.API.Http
             builder.Services.AddSingleton(new CharactersJsonStaticFileConfiguration("../data.source.json"));
             builder.Services.AddScoped<ICharactersDataProvider, CharastersJsonStaticFileDataProvider>();
 
+            builder.Services.AddSingleton<IWeaknessValidator, WeaknessValidator>();
             builder.Services.AddSingleton<IBattleStrategy, SameTypeBattleStrategy>();
             builder.Services.AddSingleton<IBattleStrategy, StandardBattleWithNoWekanessStrategy>();
             builder.Services.AddSingleton<IBattleStrategy, StandardBattleWithOneSideWeaknessStrategy>();
