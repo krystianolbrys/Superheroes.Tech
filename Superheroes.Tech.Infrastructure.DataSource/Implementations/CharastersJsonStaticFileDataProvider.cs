@@ -36,8 +36,8 @@ namespace Superheroes.Tech.Infrastructure.DataSource.Implementations
             var characters = await this.GetAll();
             var candidate = characters.FirstOrDefault(character => character.EqualsByName(Name));
 
-            return candidate == null 
-                ? throw new Exception("byznes exception here not found by name Character") 
+            return candidate == null
+                ? throw new Exception("byznes exception here not found by name Character")
                 : candidate;
         }
 
@@ -45,13 +45,15 @@ namespace Superheroes.Tech.Infrastructure.DataSource.Implementations
         {
             var characters = await this.GetAll();
 
-            return names.Select(name => characters.FirstOrDefault(character => character.EqualsByName(name)))
-                .Where(character => character != null)!;
+            var foundCharacters = names.Select(name => characters.FirstOrDefault(character => character.EqualsByName(name)))
+                .Where(character => character != null)!.ToList();
 
-            //var tasks = names.Select(this.GetByName);
-            //var characters = await Task.WhenAll(tasks);
+            if (foundCharacters.Count != names.Count())
+            {
+                throw new Exception("not all charactes found");
+            }
 
-            //return characters;
+            return foundCharacters;
         }
 
         private async Task<IEnumerable<CharacterReadDto>> ReadDtosFromRawFile()
