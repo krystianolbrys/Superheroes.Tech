@@ -11,6 +11,11 @@ namespace Superheroes.Tech.Domain.Validators
     {
         public bool IsWeaknessOneWayApplicable(IEnumerable<CharacterEntity> characters)
         {
+            if(characters.All(character => !character.HasWeaknessCharacter))
+            {
+                return false;
+            }
+
             var characterWithWeeknesDefined =
                 characters.Single(character => character.HasWeaknessCharacter);
 
