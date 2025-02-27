@@ -22,7 +22,7 @@ namespace Superheroes.Tech.Domain.Validators
             var characterWithoutWeeknesDefined =
                 characters.Single(character => !character.HasWeaknessCharacter);
 
-            if (characterWithWeeknesDefined.Weakness == characterWithoutWeeknesDefined)
+            if (characterWithWeeknesDefined.HasWeaknessFor(characterWithoutWeeknesDefined))
             {
                 return true;
             }

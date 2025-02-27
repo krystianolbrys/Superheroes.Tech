@@ -32,5 +32,15 @@ namespace Superheroes.Tech.Domain.Core.Entities
 
         public bool EqualsByName(string cmpName) => 
             StringComparer.InvariantCultureIgnoreCase.Equals(this.Name, cmpName);
+
+        public bool HasWeaknessFor(CharacterEntity character)
+        {
+            if (!this.HasWeaknessCharacter)
+            {
+                return false;
+            }
+
+            return this.Weakness == character;
+        }
     }
 }
