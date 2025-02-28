@@ -1,4 +1,6 @@
-﻿namespace Superheroes.Tech.Domain.Core.ValueObjects
+﻿using Superheroes.Tech.Domain.Core.Exceptions;
+
+namespace Superheroes.Tech.Domain.Core.ValueObjects
 {
     public class ScoreVo
     {
@@ -6,7 +8,7 @@
         {
             if (value <= 0)
             {
-                throw new ArgumentOutOfRangeException("value");
+                throw new ScoreIsZeroOrNegativeException($"Value: ${value}");
             }
 
             Value = value;

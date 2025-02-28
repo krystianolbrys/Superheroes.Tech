@@ -2,6 +2,6 @@
 {
     public class ScoreIsZeroOrNegativeException : BusinessException
     {
-        public ScoreIsZeroOrNegativeException() : base() { }
+        public ScoreIsZeroOrNegativeException(string message) : base(message) { }
     }
 }

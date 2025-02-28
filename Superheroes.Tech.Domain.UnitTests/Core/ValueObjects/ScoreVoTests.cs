@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
+using Superheroes.Tech.Domain.Core.Exceptions;
 
 namespace Superheroes.Tech.Domain.Core.ValueObjects
 {
@@ -13,7 +14,7 @@ namespace Superheroes.Tech.Domain.Core.ValueObjects
             Action act = () => new ScoreVo(0);
 
             // Act & Assert
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            act.Should().Throw<ScoreIsZeroOrNegativeException>();
         }
 
         [Test]
@@ -23,7 +24,7 @@ namespace Superheroes.Tech.Domain.Core.ValueObjects
             Action act = () => new ScoreVo(-1);
 
             // Act & Assert
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            act.Should().Throw<ScoreIsZeroOrNegativeException>();
         }
 
         [Test]
