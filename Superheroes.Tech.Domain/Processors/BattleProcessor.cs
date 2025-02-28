@@ -1,4 +1,5 @@
 ﻿using Superheroes.Tech.Domain.Core.Entities;
+using Superheroes.Tech.Domain.Core.Exceptions;
 using Superheroes.Tech.Domain.Core.ValueObjects;
 using Superheroes.Tech.Domain.Strategies;
 
@@ -28,12 +29,12 @@ namespace Superheroes.Tech.Domain.Processors
 
             if (!apllicableStrategies.Any())
             {
-                throw new Exception("no stratgies");
+                throw new NoStrategyApplicableForBattleException("Here all needed data to log what has happened");
             }
 
             if (apllicableStrategies.Count() > 1)
             {
-                throw new Exception("only one strategy possible");
+                throw new MultipleStrategyAvailableException("Here all needed data to log what has happened");
             }
 
             return apllicableStrategies.Single();
