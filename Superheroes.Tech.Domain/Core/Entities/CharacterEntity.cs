@@ -6,7 +6,7 @@ namespace Superheroes.Tech.Domain.Core.Entities
 {
     public class CharacterEntity
     {
-        public CharacterEntity(string name, CharacterType type, ScoreVo score, CharacterEntity? weakness = null)
+        public CharacterEntity(string name, CharacterTypeVo type, ScoreVo score, CharacterEntity? weakness = null)
         {
             Name = name;
             Type = type;
@@ -18,7 +18,7 @@ namespace Superheroes.Tech.Domain.Core.Entities
 
         public string Name { get; private set; }
 
-        public CharacterType Type { get; private set; }
+        public CharacterTypeVo Type { get; private set; }
 
         public ScoreVo Score { get; private set; }
 

@@ -21,7 +21,7 @@ namespace Superheroes.Tech.Infrastructure.DataSource.Projectors
         private CharacterEntity Map(CharacterReadDto dto)
         {
             var score = new ScoreVo(dto.Score!.Value);
-            var type = CharacterType.FromKey(dto.Type!);
+            var type = CharacterTypeVo.FromKey(dto.Type!);
             return new CharacterEntity(dto.Name!, type, score);
         }
 
@@ -30,7 +30,7 @@ namespace Superheroes.Tech.Infrastructure.DataSource.Projectors
             var foundWekness = existing.FirstOrDefault(character => character.EqualsByName(dto.Weakness!));
 
             var score = new ScoreVo(dto.Score!.Value);
-            var type = CharacterType.FromKey(dto.Type!);
+            var type = CharacterTypeVo.FromKey(dto.Type!);
             return new CharacterEntity(dto.Name!, type, score, foundWekness);
         }
     }

@@ -1,27 +1,27 @@
 ﻿namespace Superheroes.Tech.Domain.Core.ValueObjects
 {
-    public class CharacterType
+    public class CharacterTypeVo
     {
         private static readonly string _heroKey = "Hero";
         private static readonly string _villainKey = "Villain";
 
-        public static readonly CharacterType Hero = new CharacterType(_heroKey);
-        public static readonly CharacterType Villain = new CharacterType(_villainKey);
+        public static readonly CharacterTypeVo Hero = new CharacterTypeVo(_heroKey);
+        public static readonly CharacterTypeVo Villain = new CharacterTypeVo(_villainKey);
 
         public string Name { get; }
 
-        private static readonly Dictionary<string, CharacterType> _instances = new()
+        private static readonly Dictionary<string, CharacterTypeVo> _instances = new()
         {
             { _heroKey, Hero },
             { _villainKey, Villain }
         };
 
-        private CharacterType(string name)
+        private CharacterTypeVo(string name)
         {
             Name = name;
         }
 
-        public static CharacterType FromKey(string candidateKey)
+        public static CharacterTypeVo FromKey(string candidateKey)
         {
             var match = _instances.Keys.FirstOrDefault(key => string.Equals(key, candidateKey, StringComparison.OrdinalIgnoreCase));
 
